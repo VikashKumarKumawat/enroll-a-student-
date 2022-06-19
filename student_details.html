@@ -12,10 +12,10 @@
 
      <div class='container'>
           <h1>Student Details</h1> 
-     </div>
+     </div>  
      
      <div class='mb-4'>     
-       <table id = "personal-details">
+       <table id = "student-detail">
           <tr>
                 <th>Roll Number</th>
                 <th>First Name</th>
@@ -33,23 +33,29 @@
           <h1>Enrollment list</h1> 
     </div>
     
-        <table id = "enroll-table">
+        <table id = "student-enrollments">
+              <thead>
                 <tr>
                         <th>S. No.</th>
                         <th>Course Code</th>
                         <th>Course Name</th>
                         <th>Course Description</th>
+                        <th>Actions</th>
                         
                 </tr>
+              </thead>
+                
                  {% for c1 in courses %}
                     {% for course in c1 %}
+              <tbody>      
                   <tr>              
                     <td>{{course['course_id']}}</td>
                     <td>{{course['course_code']}}</a></td>
                     <td>{{course['course_name']}}</td>
                     <td>{{course['course_description']}}</td>
-                    
+                    <td><a href="/student/{{student.student_id}}/withdraw/{{course.course_id}}">Withdraw</a></td>
                  </tr>
+              </tbody>   
                    {% endfor %}
                 {% endfor %}
                   

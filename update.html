@@ -14,7 +14,7 @@
             <h1> Update Student </h1>
        </div>     
        
-        <form action="/student/{{ student.student_id }}/update" method="POST" id="update-form">
+        <form action="/student/{{ student.student_id }}/update" method="POST" id="update-student-form">
     
            <div class='mb-4'>
                <label>Roll Number:</label>
@@ -29,15 +29,12 @@
                 <input type="text" name="l_name" value="current_l_name"/>
            </div>
            <div class='mb-4'>
-                <label>Select Courses: </label>
-                <input type="checkbox" name="courses" value="course_1" />
-                <label>MAD I</label>
-                <input type="checkbox" name="courses" value="course_2" />
-                <label>DBMS</label>
-                <input type="checkbox" name="courses" value="course_3" />
-                <label>PDSA</label>
-                <input type="checkbox" name="courses" value="course_4" />
-                <label>BDM</label>
+                <label for="courses">Select Course: </label>
+                <select name="course" id="course">
+                {% for course in courses %}
+                   <option value="{{course['course_id']}}">{{course['course_name']}}</option>
+                {% endfor %}        
+                </select>
           </div>
           <div>
                 <input type="submit" value = "Submit">
