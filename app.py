@@ -100,24 +100,25 @@ def course_update(course_id):
       
 @app.route('/student/<int:student_id>/delete', methods=['GET', 'POST'])
 def delete(student_id):          
-        student = Student.query.get(student_id) 
+        student = Student.query.filter(Student.student_id==student_id).one() 
+        student.enrollment = Enrollments.query.filter(Enorllments.estudent_id==student_id).all()
         
         db.session.delete(student)
         db.session.commit()
         
-        return redirect(url_for('students'))
+        return redirect('/')
         
 
 #delete course data
       
 @app.route('/course/<int:course_id>/delete', methods=['GET', 'POST'])
 def course_delete(course_id):          
-        course = Course.query.get(course_id) 
+        course = Course.query.filter(Course.course_id==course_id).one() 
+        #course.enrollment = Enrollments.query.filter(Enorllments.ecourse_id==course_id).all()
         
         db.session.delete(course)
-        db.session.commit()
-        
-        return redirect(url_for('students'))        
+        db.session.commit()        
+        return redirect('/courses')
         
         
 #withdraw course 
@@ -127,7 +128,7 @@ def withdraw(student_id,course_id):
         student = Student.query.get(student_id) 
         course = Course.query.get(course_id)
         # delete a course
-        db.session.delete(course)
+        student.enrolls.remove(course)
         
         db.session.commit()
         
