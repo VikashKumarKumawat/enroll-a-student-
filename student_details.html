@@ -28,7 +28,7 @@
           </tr>
        </table>
      </div>
-     
+     {% if courses|length > 0 %}
     <div class='container'>
           <h1>Enrollment list</h1> 
     </div>
@@ -61,6 +61,7 @@
                   
                
          </table>
+       {% endif %}  
               <div class='container'>
                 
                <a href="{{'/'}}">Go Back</a>
